@@ -12,7 +12,7 @@ function AdminNewsletter() {
   const fetchSentMessages = async () => {
     try {
       await axios.get(
-        "https://hmsmern.onrender.com/admin/get-sent-newsletter"
+        "/admin/get-sent-newsletter"
       )
       .then((res) =>{
         setSubscribers(res.data);
@@ -53,7 +53,7 @@ function AdminNewsletter() {
                   </tr>
                 </thead>
                 <tbody>
-                  {subscribers.map((email , index) =>{
+                  {Array.isArray(subscribers) && subscribers.map((email , index) =>{
                     return(
                       <tr key={index} className="text-black">
                         <td scope="col" className="px-6 py-3">

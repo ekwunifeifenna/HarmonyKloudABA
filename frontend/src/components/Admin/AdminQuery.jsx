@@ -12,7 +12,7 @@ function AdminQuery() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://hmsmern.onrender.com/admin/get-contacts"
+          "/admin/get-contacts"
         );
         setContacts(response.data);
       } catch (error) {
@@ -37,7 +37,7 @@ function AdminQuery() {
       <div className="h-[80%] w-[80%] bg-white shadow-xl p-2 flex">
       <AdminSidebar userName={"Admin"} profiePic={profiePic}/>
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-start gap-5 ">
-          <p className="font-semibold text-3xl">Patient</p>
+          <p className="font-semibold text-3xl">Clients</p>
           <div className="w-full">
             <div className="relative overflow-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -64,7 +64,7 @@ function AdminQuery() {
                   </tr>
                 </thead>
                 <tbody>
-                  {contacts &&
+                  {Array.isArray(contacts) &&
                     contacts.map((item, index) => (
                       <tr key={item._id} className="text-black">
                         <td scope="col" className="px-3 py-4">
@@ -103,5 +103,6 @@ function AdminQuery() {
     </section>
   );
 }
+
 
 export default AdminQuery;

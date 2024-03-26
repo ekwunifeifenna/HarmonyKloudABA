@@ -33,7 +33,7 @@ function SignIn() {
     e.preventDefault();
     dispatch(loginProgress());
     axios
-      .post("https://hmsmern.onrender.com/auth/login", data)
+      .post("/auth/login", data)
       .then((res) => { 
   
         if (res.data.role === "patient") {
@@ -69,6 +69,7 @@ function SignIn() {
         }
       })
       .catch((err) => {
+        console.log(err.message)
         dispatch(loginFailure());
         Swal.fire({
           title: "Invalid Credentials!",
@@ -96,7 +97,7 @@ function SignIn() {
     <motion.section
     
     
-        className="bg-[#FEFAE0] h-screen w-screen">
+        className="bg-[#D1FBFB] h-screen w-screen">
       <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }} 
@@ -104,7 +105,7 @@ function SignIn() {
       transition={{ duration: 1.5 }}
       whileInView={{ opacity: 1 }}
        className="flex items-center justify-center h-full max-w-7xl m-auto md:w-[60%] rounded-xl lg:w-[40%]  ">
-        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md bg-[#CCD5AE] shadow-xl shadow-black p-4 rounded-lg">
+        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md bg-[#FFFFFF] shadow-xl shadow-black p-4 ">
           <h2 className="text-center text-2xl font-bold leading-tight text-black">
             Sign in to your account
           </h2>
@@ -169,7 +170,7 @@ function SignIn() {
                 <button
                   onClick={handleSubmit}
                   type="button"
-                  className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                  className="inline-flex w-full items-center justify-center rounded-md bg-[#238888] px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                 >
                   Get started
                 </button>
@@ -182,15 +183,15 @@ function SignIn() {
               className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
               onClick={handleDoctor}
             >
-              SignIn As Doctor
+              SignIn As Therapist
             </button>
-            <button
+            {/* <button
               type="button"
               className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
               onClick={handleNurse}
             >
               SignIn As Nurse
-            </button>
+            </button> */}
           </div>
         </div>
       </motion.div>

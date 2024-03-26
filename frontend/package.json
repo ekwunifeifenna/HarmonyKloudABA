@@ -41,5 +41,7 @@
     "tailwindcss": "^3.4.1",
     "vite": "^5.0.8",
     "vite-plugin-eslint": "^1.8.1"
-  }
+  },
+  "proxy": "htttp://localhost:3000"
+
 }

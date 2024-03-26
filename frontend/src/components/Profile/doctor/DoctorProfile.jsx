@@ -38,7 +38,7 @@ function DoctorProfile() {
     e.preventDefault();
     try {
       axios
-        .put("https://hmsmern.onrender.com/doctor/profile-update", {
+        .put("/doctor/profile-update", {
           userId: userData._id,
           updatedProfile: {
             email: email,
@@ -174,7 +174,7 @@ function DoctorProfile() {
             </div>
             <button
               onClick={handleUpdate}
-              className="bg-black w-[95%] text-white p-2 rounded-full"
+              className="bg-[#238888] w-[95%] text-white p-2 rounded-full"
             >
               Update
             </button>

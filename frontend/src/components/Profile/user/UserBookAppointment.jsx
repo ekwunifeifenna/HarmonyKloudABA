@@ -182,7 +182,7 @@ function UserBookAppointment() {
             </div>
             <button
               onClick={handleSubmit}
-              className="bg-black w-[95%] text-white p-2 rounded-full"
+              className="bg-[#238888] w-[95%] text-white p-2 rounded-full"
             >
               Book Now
             </button>

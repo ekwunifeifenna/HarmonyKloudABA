@@ -18,7 +18,7 @@ function AdminDoctor() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://hmsmern.onrender.com/doctor/get-doctors"
+          "/doctor/get-doctors"
         );
         setDoctors(response.data);
       } catch (error) {
@@ -39,7 +39,7 @@ function AdminDoctor() {
 
   const handleAddDoctor = async (e) => {
     e.preventDefault();
-    await axios.post("https://hmsmern.onrender.com/doctor/add-doctor",{
+    await axios.post("/doctor/add-doctor",{
         name:docname,
         specialization:docspec,
         email:docemail
@@ -65,7 +65,7 @@ function AdminDoctor() {
 
   const editPatient = async (id) => {
     await axios
-      .put(`https://hmsmern.onrender.com/doctor/update-doctor/${id}`, {})
+      .put(`/doctor/update-doctor/${id}`, {})
       .then((res) => {
         Swal.fire({
           title: "Success",
@@ -84,7 +84,7 @@ function AdminDoctor() {
 
   const deletePatient = async (id) => {
     await axios
-      .delete(`https://hmsmern.onrender.com/doctor/delete-doctor/${id}`,)
+      .delete(`/doctor/delete-doctor/${id}`,)
       .then((res) => {
         Swal.fire({
           title: "Success",
@@ -114,7 +114,7 @@ function AdminDoctor() {
       <div className="h-[80%] w-[80%] bg-white shadow-xl p-2 flex">
       <AdminSidebar  userName={"Admin"} profiePic={profiePic}/>
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-start gap-5 ">
-          <p className="font-semibold text-3xl">Doctors</p>
+          <p className="font-semibold text-3xl">Therapists</p>
           <div className="w-full">
             <div className="relative overflow-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -173,7 +173,7 @@ function AdminDoctor() {
           </div>
           <button
             onClick={handleCreate}
-            className="bg-slate-900 p-2 w-[10%] rounded-full hover:scale-110 duration-200 active:scale-90  text-white"
+            className="bg-[#238888] p-2 w-[10%] rounded-full hover:scale-110 duration-200 active:scale-90  text-white"
           >
             Create
           </button>
@@ -211,13 +211,13 @@ function AdminDoctor() {
                 ></input>
               </div>
 
-              <button onClick={ handleAddDoctor} className=" w-[35%] bg-black text-white rounded-full text-md font-medium p-2 cursor-pointer hover:scale-110 duration-200 active:scale-90">
+              <button onClick={ handleAddDoctor} className=" w-[35%] bg-[#238888] text-white rounded-full text-md font-medium p-2 cursor-pointer hover:scale-110 duration-200 active:scale-90">
                 Add Doctor
               </button>
 
               <button
                 onClick={handleGoBack}
-                className="bg-black text-white rounded-full text-md font-medium p-2 cursor-pointer hover:scale-105 duration-200 active:scale-90"
+                className="bg-[#238888] text-white rounded-full text-md font-medium p-2 cursor-pointer hover:scale-105 duration-200 active:scale-90"
               >
                 {"<- Go back"}
               </button>

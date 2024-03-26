@@ -6,7 +6,7 @@ import UserSidebar from "./UserSidebar";
 import Swal from "sweetalert2";
 
 function UserProfile() {
-  const [userData, setuserData] = useState([]);
+  const [userData, setuserData] = useState(null);
   const [userName, setName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [address, setAddress] = useState("");
@@ -39,9 +39,9 @@ function UserProfile() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    try {
+    try {  
       axios
-        .put("https://hmsmern.onrender.com/user/profile-update", {
+        .put("/user/profile-update", {
           userId: userData._id,
           updatedProfile: {
             email: email,
@@ -66,10 +66,11 @@ function UserProfile() {
             });
             const user = res.data.user;
             localStorage.setItem("user", JSON.stringify(user));
-            window.location.href = "/user-profile";
+            window.location.href = "/user/user-profile";
           }
         });
     } catch (err) {
+      console.log(err)
       Swal.fire({
         title: "Error",
         icon: "error",
@@ -82,7 +83,7 @@ function UserProfile() {
   return (
     <section className="bg-slate-300 flex justify-center items-center">
       <div className="h-[80%] w-[80%] bg-white shadow-xl p-2 flex">
-        <UserSidebar profiePic={profiePic} userName={userData.userName} />
+        <UserSidebar profiePic={profiePic} userName={userData && userData.userName} />
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-around ">
           <p className="font-semibold text-3xl">Account Settings</p>
           <form action="" className="flex flex-col h-[80%] justify-between">
@@ -177,7 +178,7 @@ function UserProfile() {
             </div>
             <button
               onClick={handleUpdate}
-              className="bg-black w-[95%] text-white p-2 rounded-full"
+              className="bg-[#238888] w-[95%] text-white p-2 rounded-full"
             >
               Update
             </button>

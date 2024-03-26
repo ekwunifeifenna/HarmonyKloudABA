@@ -10,14 +10,14 @@ const AdminSidebar = ({ profilePic, userName }) => {
     return {
       fontWeight: isActive ? "600" : "400",
       color: isActive ? "white" : "black",
-      backgroundColor: isActive ? "black" : "white",
+      backgroundColor: isActive ? "black" : "#238888",
     };
   };
 
   const dispatch = useDispatch();
   const handleSignOut = async (e) => {
     e.preventDefault();
-    await axios.get("https://hmsmern.onrender.com/auth/logout").then((res) => {
+    await axios.get("/auth/logout").then((res) => {
       if (res.data.message === "User Logged Out") {
         localStorage.removeItem("user");
         dispatch(logout());
@@ -27,7 +27,7 @@ const AdminSidebar = ({ profilePic, userName }) => {
   };
 
   return (
-    <div className="bg-slate- h-full w-[18%] flex flex-col justify-between p-2 ">
+    <div className="bg-slate- h-full w-[18%] flex flex-col justify-between p-2 bg-[#238888]">
       <div className="flex flex-col gap-6">
         <div className="w-full flex flex-col items-center ">
           <img
@@ -50,29 +50,29 @@ const AdminSidebar = ({ profilePic, userName }) => {
             className={"w-full  p-2 h-[40px] "}
             to="/admin-doctor"
           >
-            Doctor
+            Therapists
           </NavLink>
-          <NavLink
+          {/* <NavLink
             style={navLinkStyle}
             className={"w-full p-2 h-[40px] "}
             to="/admin-nurse"
           >
             Nurse
-          </NavLink>
+          </NavLink> */}
           <NavLink
             style={navLinkStyle}
             className={"w-full p-2 h-[40px] "}
             to="/admin-patient"
           >
-            Patient
+            Clients
           </NavLink>
-          <NavLink
+          {/* <NavLink
             style={navLinkStyle}
             className={"w-full p-2 h-[40px] "}
             to="/admin-query"
           >
             Query
-          </NavLink>
+          </NavLink> */}
           <NavLink
             style={navLinkStyle}
             className={"w-full p-2 h-[40px] "}

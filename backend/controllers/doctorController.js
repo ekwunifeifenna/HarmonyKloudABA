@@ -59,7 +59,7 @@ router.post("/add-doctor", async (req, res) => {
     if (lastDoctor) {
       const lastDoctorId = parseInt(lastDoctor.doctorId, 10);
       doctorId = (lastDoctorId + 1).toString();
-    } else {
+    } else {   
       doctorId = "1";
     }
     const firstemail = email.split('@')[0];

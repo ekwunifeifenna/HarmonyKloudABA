@@ -7,7 +7,8 @@ const User = require("../models/user.js");
 const config = require("config");
 const Doctor = require("../models/doctor.js");
 const Nurse = require("../models/nurse.js");
-require("dotenv/config");
+// require("dotenv/config");  
+require('dotenv').config({ path: './config/.env' })
 
 
 // const verifyUser = (req, res, next) => {
@@ -39,7 +40,7 @@ require("dotenv/config");
       if (existingUser) {
         return res
           .status(400)
-          .json({ error: "User with this email already exists" });
+          .json({ error: "User with this email already exists" });  
       }
   
       const salt = await bcrypt.genSalt(10);
@@ -55,6 +56,7 @@ require("dotenv/config");
   
       res.json({savedUser, message:"Success"});
     } catch (error) {
+      console.log(error)
       res.status(500).json({ error: error.message });
     }
   });
@@ -64,12 +66,12 @@ require("dotenv/config");
 
   
     try {
-      let user, doctor, nurse;
+      let user, doctor, nurse; 
       let isPasswordValid = false;
   
-      user = await User.findOne({ email });
-      doctor = await Doctor.findOne({ email });
-      nurse = await Nurse.findOne({ email });
+       user = await User.findOne({ email });
+       doctor = await Doctor.findOne({ email });
+       nurse = await Nurse.findOne({ email });
   
       if (user || doctor || nurse) {
 
@@ -111,6 +113,7 @@ require("dotenv/config");
         res.status(404).json({ error: "User not found" });
       }
     } catch (error) {
+      console.log(error)
       res.status(500).json({ error: error.message });
     }
   });

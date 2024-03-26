@@ -15,7 +15,7 @@ function AdminDashboard() {
   useEffect(() => {
     const fetchInfo = async (e) => {
       await axios
-        .get("https://hmsmern.onrender.com/admin/get-count", {
+        .get("/admin/get-count", {
         })
         .then((res) => {
           setdocount(res.data.doccou);

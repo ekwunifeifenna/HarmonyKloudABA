@@ -53,7 +53,7 @@ function ContactUs() {
     
   
         
-        className="h-screen w-screen bg-[#FEFAE0]">
+        className="h-screen w-screen bg-[#D1FBFB]">
       <Navbar />
       <motion.div 
       ref={ref}
@@ -108,7 +108,7 @@ function ContactUs() {
           animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 50 }} 
           transition={{ duration: 1.5 }}
           whileInView={{ opacity: 1 }}
-           className="flex flex-col w-[500px] h-4/5 p-4 justify-center items-center bg-[#FAEDCD] gap-10 border border-black broder-2 rounded-lg border-transparent shadow-xl shadow-slate-950">
+           className="flex flex-col w-[500px] h-4/5 p-4 justify-center items-center bg-white gap-10 border border-black broder-2 rounded-lg border-transparent shadow-xl shadow-slate-950">
             <span className="text-zinc-650 text-3xl font-medium">
               Get in touch
             </span>
@@ -152,7 +152,7 @@ function ContactUs() {
             <button
               onClick={handleSubmit}
               type="button"
-              className="rounded-md bg-[#D4A373] px-10 py-3 text-lg font-semibold text-white shadow-sm hover:scale-105 duration-150 active:scale-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+              className="rounded-md bg-[#238888] px-10 py-3 text-lg font-semibold text-white shadow-sm hover:scale-105 duration-150 active:scale-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
             >
               Submit
             </button>

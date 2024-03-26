@@ -37,7 +37,7 @@ function DoctorAuth() {
     e.preventDefault();
     dispatch(loginProgress());
     axios.
-    post("https://hmsmern.onrender.com/auth/login", data)
+    post("/auth/login", data)
     .then((res)=>{
       if(res.data.role === "doctor"){
         const user = res.data.user;
@@ -79,7 +79,7 @@ function DoctorAuth() {
     <section
     
 
-        className='bg-[#FEFAE0] h-screen w-screen'>
+        className='bg-[#D1FBFB] h-screen w-screen'>
         <motion.div
          ref={ref}
          initial={{ opacity: 0, x: -50 }} 
@@ -87,7 +87,7 @@ function DoctorAuth() {
          transition={{ duration: 1.5 }}
          whileInView={{ opacity: 1 }}
           className="flex items-center justify-center h-full max-w-7xl m-auto md:w-[60%] rounded-xl lg:w-[40%]  ">
-        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md bg-[#CCD5AE] shadow-xl shadow-black  p-4 rounded-lg">
+        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md bg-white shadow-xl shadow-black  p-4 ">
           <h2 className="text-center text-2xl font-bold leading-tight text-black">
             Doctor SignIn
           </h2>
@@ -147,7 +147,7 @@ function DoctorAuth() {
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                  className="inline-flex w-full items-center justify-center rounded-md bg-[#238888] px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-[#238888]/80"
                 >
                   Get started
                 </button>

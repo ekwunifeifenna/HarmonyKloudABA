@@ -21,13 +21,14 @@ function SignUp() {
       const handleSubmit = async (e) => {
         e.preventDefault();
         axios
-          .post("https://hmsmern.onrender.com/auth/register", data)
+          .post("/auth/register", data)
           .then((res) => {
-            if (res.data.message === "Success") {
+            if (res.data.message === "Success") {  
               navigate("/sign-in");
             }
           })
           .catch((err) => {
+            console.log(err.message)
             Swal.fire({
               title: "Error",
               icon: "error",
@@ -39,7 +40,7 @@ function SignUp() {
 
 
   return (
-    <motion.section className='bg-[#FEFAE0]'
+    <motion.section className='bg-[#D1FBFB]'
     >
         <motion.div
         ref={ref}
@@ -48,7 +49,7 @@ function SignUp() {
         transition={{ duration: 1.5 }}
         whileInView={{ opacity: 1 }}
          className="flex items-center  justify-center px-8 py-24">
-            <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md bg-[#CCD5AE] shadow-xl shadow-black p-5 rounded-lg mt-6">
+            <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md bg-[#FFFFFF] shadow-xl shadow-black p-5  mt-6">
             
             <h2 className="text-center text-2xl font-bold leading-tight text-black">
                 Sign up to create account
@@ -127,7 +128,7 @@ function SignUp() {
                 <button
                 onClick={handleSubmit}
                 type="button"
-                className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-black px-3.5 py-2.5 font-semibold text-white transition-all duration-200 hover:bg-slate-900 "
+                className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-[#238888] px-3.5 py-2.5 font-semibold text-white transition-all duration-200 hover:bg-slate-900 "
                 >
                 Sign up 
                 </button>
@@ -137,5 +138,5 @@ function SignUp() {
     </motion.section>
   )
 }
-
 export default SignUp
+
