@@ -18,5 +18,6 @@ html{
 
 section{
   height: 100vh;
+  /* height: 100%; */
   scroll-snap-align: center;
 }

@@ -12,12 +12,17 @@ const appointmentController = require("./controllers/appointmentController");
 const adminController = require("./controllers/adminController");
 const limiter = require("./middlewares/rateLimiter");
 const router = express.Router();
+const path = require('path'); 
 const app = express();
+
+
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(corsMiddleware);
+
+app.use(express.static(path.join(__dirname, 'client/build'))); 
 
 app.use("/auth",limiter, authController);
 app.use("/user",limiter, userController);   
@@ -25,6 +30,12 @@ app.use("/doctor",limiter, doctorController);
 app.use("/nurse",limiter, nurseController);
 app.use("/appointment",limiter, appointmentController);
 app.use("/admin",limiter, adminController);
+
+// The "catchall" handler
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html')); 
+});
+
 app.use(errorHandlerMiddleware);
 
 (async () => {

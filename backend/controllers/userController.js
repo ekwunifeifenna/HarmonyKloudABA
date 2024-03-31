@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const ContactUs = require("../models/contactUs");
+
 
 router.post("/add-contact-us", async (req, res) => {
   const { name, phone, email, message } = req.body;
@@ -22,19 +24,13 @@ router.post("/add-contact-us", async (req, res) => {
   }
 });
 
-router.get("/get-users" , async (req ,res) =>{
-
+router.get("/get-users", async (req, res) => {
   try {
-    const findUser =  await User.find();
-    if(!findUser) res.json("No user found");
-    res
-    .status(200)
-    .json(findUser);
-  } catch (error) {   
-    
-  }
-
-} );
+    const findUser = await User.find();
+    if (!findUser) res.json("No user found");
+    res.status(200).json(findUser);
+  } catch (error) {}
+});
 
 router.put("/profile-update", async (req, res) => {
   const { userId, updatedProfile } = req.body;
@@ -71,15 +67,14 @@ router.get("/get-medications/:userEmail", async (req, res) => {
   }
 });
 
-router.post('/add-medications/:userEmail', async (req, res) => {
+router.post("/add-medications/:userEmail", async (req, res) => {
   try {
     const { userEmail } = req.params;
     const { name, dosage, frequency } = req.body;
 
-
     const user = await User.findOne({ email: userEmail });
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: "User not found" });
     }
 
     user.medicalHistory.push({
@@ -91,12 +86,11 @@ router.post('/add-medications/:userEmail', async (req, res) => {
     res.status(201).json(user);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 
-
-router.get('/user-profile', async (req, res) => {
+router.get("/user-profile", async (req, res) => {
   try {
     // Get the user ID from the request, typically from the auth token
     const userId = req.user.id;
@@ -112,9 +106,78 @@ router.get('/user-profile', async (req, res) => {
   }
 });
 
-
 router.post("/add-user", async (req, res) => {
-  const { name, email ,specialization } = req.body;
+  const {
+    //client details
+    name,
+    email,
+    specialization,
+    userName,
+    phoneNumber,
+    dateOfBirth,
+    gender,
+    address,
+    emergencyContact,
+    director,
+    guardianFullName,
+    customClientNumber,
+    SSN,
+
+    // primary payer details
+    primaryPayer,
+    primaryInsuranceID,
+    primaryGroupPolicyNumber,
+    primaryInsuranceCopayment,
+    primaryRelationshipToPatient,
+    primaryInsuranceNumberFor837p,
+    primaryInsuredFirstName,
+    primaryInsuredMiddleName,
+    primaryInsuredLastName,
+    primaryInsuredGender,
+    primaryInsuredAddress,
+    primaryInsuredCountry,
+    primaryInsuredState,
+    primaryInsuredCity,
+    primaryInsuredZIP,
+    primaryIssuedDateOfBirth,
+    primaryInsuredPhoneNumber,
+    // secondary payer details
+    secondaryPayer,
+    secondaryInsuranceID,
+    secondaryGroupPolicyNumber,
+    secondaryInsuranceCopayment,
+    secondaryRelationshipToPatient,
+    secondaryInsuranceNumberFor837p,
+    secondaryInsuredFirstName,
+    secondaryInsuredMiddleName,
+    secondaryInsuredLastName,
+    secondaryInsuredGender,
+    secondaryInsuredAddress,
+    secondaryInsuredCountry,
+    secondaryInsuredState,
+    secondaryInsuredCity,
+    secondaryInsuredZIP,
+    secondaryIssuedDateOfBirth,
+    secondaryInsuredPhoneNumber,
+    // Referral, Coordinator, & service details
+    referringPhysicianNPI,
+    referringPhysicianTaxonomy,
+    referringPhysicianMedicaidNumber,
+    referringPhysicianFirstName,
+    referringPhysicianMiddleName,
+    referringPhysicianLastName,
+    referringPhysicianPhone,
+    referringPhysicianFAX,
+    referringPhysicianLastEmail,
+    referralExpirationDate,
+    MDLicenseNumber,
+    serviceLocation,
+    startOfServiceAt,
+    initialAssessmentAt,
+    initialBASPAT,
+
+    //Primary Payer details
+  } = req.body;
   try {
     const existingUser = await User.findOne({ email });
 
@@ -128,37 +191,98 @@ router.post("/add-user", async (req, res) => {
     if (lastUser) {
       const lastUserId = parseInt(lastUser.userId, 10);
       userId = (lastUserId + 1).toString();
-    } else {   
+    } else {
       userId = "1";
     }
-    const firstemail = email.split('@')[0];
-    const password = firstemail + '@123' ;
+    const firstemail = email.split("@")[0];
+    const password = firstemail + "@123";
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
       name,
       email,
-      userId:userId,
+      userId: userId,
       password: hashedPassword,
-      specialization
+      specialization,
+      userName,
+      phoneNumber,
+      dateOfBirth,
+      gender,
+      address,
+      emergencyContact,
+      director,
+      guardianFullName,
+      customClientNumber,
+      SSN,
+
+      // primary payer details
+      primaryPayer,
+      primaryInsuranceID,
+      primaryGroupPolicyNumber,
+      primaryInsuranceCopayment,
+      primaryRelationshipToPatient,
+      primaryInsuranceNumberFor837p,
+      primaryInsuredFirstName,
+      primaryInsuredMiddleName,
+      primaryInsuredLastName,
+      primaryInsuredGender,
+      primaryInsuredAddress,
+      primaryInsuredCountry,
+      primaryInsuredState,
+      primaryInsuredCity,
+      primaryInsuredZIP,
+      primaryIssuedDateOfBirth,
+      primaryInsuredPhoneNumber,
+      // secondary payer details
+      secondaryPayer,
+      secondaryInsuranceID,
+      secondaryGroupPolicyNumber,
+      secondaryInsuranceCopayment,
+      secondaryRelationshipToPatient,
+      secondaryInsuranceNumberFor837p,
+      secondaryInsuredFirstName,
+      secondaryInsuredMiddleName,
+      secondaryInsuredLastName,
+      secondaryInsuredGender,
+      secondaryInsuredAddress,
+      secondaryInsuredCountry,
+      secondaryInsuredState,
+      secondaryInsuredCity,
+      secondaryInsuredZIP,
+      secondaryIssuedDateOfBirth,
+      secondaryInsuredPhoneNumber,
+      // Referral, Coordinator, & service details
+      referringPhysicianNPI,
+      referringPhysicianTaxonomy,
+      referringPhysicianMedicaidNumber,
+      referringPhysicianFirstName,
+      referringPhysicianMiddleName,
+      referringPhysicianLastName,
+      referringPhysicianPhone,
+      referringPhysicianFAX,
+      referringPhysicianLastEmail,
+      referralExpirationDate,
+      MDLicenseNumber,
+      serviceLocation,
+      startOfServiceAt,
+      initialAssessmentAt,
+      initialBASPAT,
     });
 
     const savedUser = await newUser.save();
 
-    res.status(200).json({savedUser,message:"Success"});
+    res.status(200).json({ savedUser, message: "Success" });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ error: error.message });
   }
 
-
   // const { name, email } = req.body;
 
-  
   // try {
   //   let user
-  //   // let user, doctor, nurse; 
+  //   // let user, doctor, nurse;
   //   // let isPasswordValid = false;
 
   //    user = await User.findOne({ email });

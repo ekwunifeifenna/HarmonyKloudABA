@@ -2,31 +2,31 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 
-const medicationSchema = new Schema({
-  name: {
-    type: String,
-  },
-  dosage: {
-    type: String,
-  },
-  frequency: {
-    type: String,
-  },
-});
+// const medicationSchema = new Schema({
+//   name: {
+//     type: String,
+//   },
+//   dosage: {
+//     type: String,
+//   },
+//   frequency: {
+//     type: String,
+//   },
+// });
 
-const medicalHistorySchema = new Schema({
-  condition: {
-    type: String,
-    default: ""
-  },
-  diagnosisDate: {
-    type: Date,
-  },
-  treatment: {
-    type: String,
-  },
-  medications: [medicationSchema],
-});
+// const medicalHistorySchema = new Schema({
+//   condition: {
+//     type: String,
+//     default: ""
+//   },
+//   diagnosisDate: {
+//     type: Date,
+//   },
+//   treatment: {
+//     type: String,
+//   },
+//   medications: [medicationSchema],
+// });
 
 const userSchema = new Schema({
   userName: {
@@ -349,7 +349,7 @@ const userSchema = new Schema({
     // required: [true, 'Please enter the termination date'],
   },
 
-  medicalHistory: { type: [medicalHistorySchema], default: [] },
+  // medicalHistory: { type: [medicalHistorySchema], default: [] },
 });
 
 const User = mongoose.model("User", userSchema, "users");

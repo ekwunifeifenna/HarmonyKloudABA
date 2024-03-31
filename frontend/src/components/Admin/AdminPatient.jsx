@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import profiePic from "../../assets/human6.jpg";
 import axios from "axios";
@@ -285,7 +285,7 @@ function AdminPatient() {
 
   return (
     <section className="bg-slate-300 flex justify-center items-center">
-      <div className="h-[80%] w-[80%] bg-white shadow-xl p-2 flex">
+      <div className="h-full w-full bg-white shadow-xl p-2 flex">
         <AdminSidebar userName={"Admin"} profiePic={profiePic} />
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-start gap-5 ">
           <p className="font-semibold text-3xl">Clients</p>
@@ -298,10 +298,10 @@ function AdminPatient() {
                       #
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Patient Name
+                      Client Name
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Patient Email
+                      Client Email
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Role
@@ -355,11 +355,12 @@ function AdminPatient() {
 
 
         {isCreate && (
-          <div className="absolute h-[78%] w-[79%] z-50 bg-white overflow-auto  ">
-            <form className="flex flex-col w-full h-full justify-center gap-4 items-center overflow-auto">
-
-              <h3>Client Details</h3>
-              <hr />
+          <div className="absolute h-full w-full z-50 bg-white overflow-auto  ">
+            
+            <form className="flex flex-col w-full h-full justify-start gap-4 items-center overflow-auto">
+            <h1 className='font-bold text-2xl'>New Client</h1>
+              <h3 className='font-bold'>Client Details</h3>
+              <hr className="border-t-2 border-gray-600"/>
 
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter User Name:</p>
@@ -420,6 +421,16 @@ function AdminPatient() {
                   className="flex h-10  w-[90%] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                   type="text"
                   placeholder="Street"
+                ></input>
+              </div>
+
+              <div className="flex flex-col w-[40%] items-center ">
+                <p className="">Enter State:</p>
+                <input
+                  onChange={(e) => setState(e.target.value)}
+                  className="flex h-10  w-[90%] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="text"
+                  placeholder="City"
                 ></input>
               </div>
 
@@ -515,8 +526,8 @@ function AdminPatient() {
 
 
 
-              <h3>Primry Payer Details</h3>
-              <hr />
+              <h3 className='font-bold'>Primry Payer Details</h3>
+              <hr className="border-t-2 border-gray-600"/>
 
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter Primary Payer:</p>
@@ -637,7 +648,7 @@ function AdminPatient() {
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter Primary Insured Country:</p>
                 <input
-                  onChange={(e) => setPrimaryInsuranceCountry(e.target.value)}
+                  onChange={(e) => setPrimaryInsuredCountry(e.target.value)}
                   className="flex h-10  w-[90%] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                   type="text"
                   placeholder="Primary Insured Country"
@@ -697,8 +708,8 @@ function AdminPatient() {
 
 
 
-              <h3>Secondary Payer Details</h3>
-              <hr />
+              <h3 className='font-bold'>Secondary Payer Details</h3>
+              <hr className="border-t-2 border-gray-600"/>
 
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter Secondary Payer:</p>
@@ -881,8 +892,8 @@ function AdminPatient() {
 
 
 
-              <h3>Referral, Coordinator, & service details</h3>
-              <hr />
+              <h3 className='font-bold'>Referral, Coordinator, & service details</h3>
+              <hr className="border-t-2 border-gray-600"/>
 
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter Referring Physician NPI:</p>
@@ -911,6 +922,16 @@ function AdminPatient() {
                   className="flex h-10  w-[90%] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                   type="text"
                   placeholder="Enter Referring Physician Medicaid Number"
+                ></input>
+              </div>
+
+              <div className="flex flex-col w-[40%] items-center ">
+                <p className="">Enter Referring Physician First Name:</p>
+                <input
+                  onChange={(e) => setReferringPhysicianFirstName(e.target.value)}
+                  className="flex h-10  w-[90%] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="text"
+                  placeholder="Referring Physician First Name"
                 ></input>
               </div>
 
@@ -957,6 +978,18 @@ function AdminPatient() {
                   placeholder="Referring Physician FAX"
                 ></input>
               </div>
+
+              <div className="flex flex-col w-[40%] items-center ">
+                <p className="">Enter Referring Physician Email:</p>
+                <input
+                  onChange={(e) => setReferringPhysicianLastEmail(e.target.value)}
+                  className="flex h-10  w-[90%] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="text"
+                  placeholder="Referring Physician Email"
+                ></input>
+              </div>
+
+              
 
 
               <div className="flex flex-col w-[40%] items-center ">
@@ -1030,6 +1063,9 @@ function AdminPatient() {
                 ></input>
               </div>
 
+           
+              
+
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter Coordinator Full Name:</p>
                 <input
@@ -1062,7 +1098,7 @@ function AdminPatient() {
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter Support Plan At:</p>
                 <input
-                  onChange={(e) => setSecondaryInsuredPhoneNumber(e.target.value)}
+                  onChange={(e) =>  setSupportPlanAt(e.target.value)}
                   className="flex h-10  w-[90%] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                   type="date"
                   placeholder="Support Plan At"

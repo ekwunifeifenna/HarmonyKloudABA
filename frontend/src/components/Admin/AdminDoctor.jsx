@@ -52,7 +52,7 @@ function AdminDoctor() {
     return <Loader />;
   }
 
-  const handleAddDoctor = async (e) => {
+  const handleAddDoctor = async (e) => {   
     e.preventDefault();
     await axios.post("/doctor/add-doctor", {
       name: docname,
@@ -82,7 +82,8 @@ function AdminDoctor() {
         });
       }
 
-    }).catch((e) => {
+    }).catch((err) => {
+      console.log(err)
       Swal.fire({
         title: "Error",
         icon: "error",
@@ -141,7 +142,7 @@ function AdminDoctor() {
 
   return (
     <section className="bg-slate-300 flex justify-center items-center">
-      <div className="h-[80%] w-[80%] bg-white shadow-xl p-2 flex ">
+      <div className="h-full w-full bg-white shadow-xl p-2 flex ">
         <AdminSidebar userName={"Admin"} profiePic={profiePic} />
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-start gap-5 ">
           <p className="font-semibold text-3xl">Therapists</p>
@@ -154,10 +155,10 @@ function AdminDoctor() {
                       #
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Doctor Name
+                      Therapist Name
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Doctor Email
+                      Therapist Email
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Department
@@ -208,9 +209,12 @@ function AdminDoctor() {
             Create
           </button>
         </div>
+
         {isCreate && (
-          <div className="absolute  h-[80%] w-[80%] z-50 bg-white overflow-auto pt-12">
-            <form className="flex flex-col w-full h-full justify-center gap-4 items-center">
+          <div className="absolute  h-full w-full z-50 bg-white overflow-auto pt-12">
+            
+            <form className="flex flex-col w-full h-full justify-start gap-4 items-center overflow-auto">
+            <h1 className='font-bold text-2xl'>New Therapist</h1>
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter Therapist Name:</p>
                 <input
@@ -275,7 +279,7 @@ function AdminDoctor() {
                   placeholder="therapist level"
                 ></input>
               </div>
-              {/* 
+              
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter company Name:</p>
                 <input
@@ -285,7 +289,7 @@ function AdminDoctor() {
                   type="text"
                   placeholder="company name"
                 ></input>
-              </div> */}
+              </div>
 
               <div className="flex flex-col w-[40%] items-center ">
                 <p className="">Enter fein:</p>

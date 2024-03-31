@@ -37,7 +37,7 @@ function AdminDashboard() {
 
   return (
     <section className="bg-slate-300 flex justify-center items-center">
-      <div className="h-[80%] w-[80%] bg-white shadow-xl p-2 flex">
+      <div className="h-full w-full bg-white shadow-xl p-2 flex">
         <AdminSidebar userName={"Admin"} profiePic={profiePic}/>
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-around ">
           <p className="font-semibold text-3xl text-center">Dashboard</p>
@@ -45,14 +45,14 @@ function AdminDashboard() {
             <div className="flex w-full justify-evenly h-[30%]">
               <div className="flex shadow-xl rounded-xl border border-2 border-slate-900 w-[30%] justify-center items-center">
                 <span className="font-semibold text-xl">
-                  Doctors: {docount}
+                  Therapists: {docount}
                 </span>
               </div>
-              <div className="flex shadow-xl rounded-xl border border-2 border-slate-900  w-[30%] justify-center items-center">
+              {/* <div className="flex shadow-xl rounded-xl border border-2 border-slate-900  w-[30%] justify-center items-center">
                 <span className="font-semibold text-xl">
                   Nurses: {nursecount}{" "}
                 </span>
-              </div>
+              </div> */}
             </div>
             <div className="flex w-full  justify-evenly h-[30%]">
               <div className="flex shadow-xl rounded-xl border border-2 border-slate-900 w-[30%] justify-center items-center">
