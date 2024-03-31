@@ -14,6 +14,37 @@ function AdminPatient() {
   const [patientSpec, setPatientSpecialization] = useState("");
   const [patientEmail, setPatientEmail] = useState("");
 
+  //new stuff added
+  const [director, setDirector] = useState("");
+  const [guardianFullName, setGuardianFullName] = useState("");
+  const [customClientNumber, setCustomClientNumber] = useState("");
+  const [ssn, setSsn] = useState("");
+
+  //primary payer details
+  const [primaryPayer, setPrimaryPayer] = useState("");
+  const [primaryInsuranceID, setInsuranceID] = useState("");
+  const [primaryGroupPolicyNumber, setGroupPolicyNumber] = useState("");
+  const [primaryInsuranceCopayment, setInsuranceCopayment] = useState("");
+  const [primaryRelationshipToPatient, setRelationshipToPatient] = useState("");
+  const [primaryInsuranceNumberFor837p, setInsuranceNumberFor837p] = useState("");
+  const [primaryInsuredFirstName, setInsuredFirstName] = useState("");
+  const [primaryInsuredMiddleName, setInsuredMiddleName] = useState("");
+  const [primaryInsuredLastName, setInsuredLastName] = useState("");
+  const [primaryInsuredGender, setPrimaryInsuredGender] = useState("");
+  const [primaryInsuredAddress, setInsuredAddress] = useState("");
+  const [primaryInsuredCountry, setInsuredCountry] = useState("");
+  const [primaryInsuredState, setInsuredState] = useState("");
+  const [primaryInsuredCity, setInsuredCity] = useState("");
+  const [primaryInsuredZIP, setInsuredZIP] = useState("");
+  const [primaryIssuedDateOfBirth, setPrimaryIssuedDateOfBirth] = useState("");
+  const [primaryInsuredPhoneNumber, setInsuredPhoneNumber] = useState("");
+
+
+  //secondary payer details 
+  const [laguages, setLanguages] = useState("");
+  const [hireDate, setHireDate] = useState("");
+  const [education, setEducation] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
