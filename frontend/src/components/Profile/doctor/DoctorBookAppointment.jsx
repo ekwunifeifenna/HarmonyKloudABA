@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import profiePic from "../../../assets/human6.jpg";
 import axios from "axios";
 import Swal from "sweetalert2";
-import UserSidebar from "./UserSidebar";
+import DoctorSidebar from "./DoctorSidebar";
 
 
-function UserBookAppointment() {
-  const [userData, setuserData] = useState([]);
+function DoctorBookAppointment() {
+  const [doctorData, setDoctorData] = useState([]);
   const [userName, setName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [address, setAddress] = useState("");
@@ -17,6 +17,7 @@ function UserBookAppointment() {
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
   const [time, setTime] = useState("");
+  const [users, setUsers] = useState([]);
   const [doctors, setDoctors] = useState([]);
   
   const getDay = () => {
@@ -27,21 +28,21 @@ function UserBookAppointment() {
   useEffect(() => {
     const fetchInfo = async (e) => {
 
-      const user = JSON.parse(localStorage.getItem("user"));
-      setuserData(user);
+      const doctor = JSON.parse(localStorage.getItem("doctor"));
+      setDoctorData(doctor);
 
-      setName(user.userName);
-      setMobileNumber(user.phoneNumber);
-      setAddress(user.address.street);
-      setGender(user.gender);
-      setEmail(user.email);
+      setName(doctor?.userName);
+      setMobileNumber(doctor?.phoneNumber);
+      setAddress(doctor?.address.street);
+      setGender(doctor?.gender);
+      setEmail(doctor?.email);
     };
-    const fetchDoctors = async (e) => {
-      const res = await axios.get("/doctor/get-doctors");
-      setDoctors(res.data);
+    const fetchUsers = async (e) => {
+      const res = await axios.get("/user/get-users");
+      setUsers(res.data);
     };
 
-    fetchDoctors();
+    fetchUsers();
 
     fetchInfo();
   }, []);
@@ -50,9 +51,9 @@ function UserBookAppointment() {
     e.preventDefault();
     await axios
       .post('/appointment/add-appointment', {
-        patient: userData.userName,
+        doctor: doctorData?.userName,
         phone: mobileNumber,
-        doctor: doctor,
+        // doctor: doctor,
         appointmentDate: appointmentDate,
         reason: reason,
         email: email,
@@ -79,7 +80,7 @@ function UserBookAppointment() {
   return (
     <section className="bg-slate-300 flex justify-center items-center">
       <div className="h-full w-full bg-white shadow-xl p-2 flex">
-      <UserSidebar profiePic={profiePic} userName={userData.userName} />
+      <DoctorSidebar profiePic={profiePic} userName={doctorData.userName} />
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-around ">
           <p className="font-semibold text-3xl">Book Appointment</p>
           <form action="" className="flex flex-col h-[80%] justify-between">
@@ -141,7 +142,7 @@ function UserBookAppointment() {
                 ></input>
               </div>
               <div className="flex flex-col w-[50%] justify-start">
-                <p>Enter Doctor Name:</p>
+                <p>Enter Client Name:</p>
                 <select
                 value={doctor}
                   onChange={(e) => setDoctor(e.target.value)}
@@ -149,11 +150,11 @@ function UserBookAppointment() {
                   className="flex h-10 w-[90%] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="Choose you Consultant">
-                    Choose you Consultant
+                    Choose your Client
                   </option>
-                  {doctors.map((doctors) => (
-                    <option key={doctors._id} value={doctors._id}>
-                      {doctors.name}
+                  {users.map((user) => (
+                    <option key={user._id} value={user._id}>
+                      {user.name}
                     </option>
                   ))}
                 </select>
@@ -193,4 +194,4 @@ function UserBookAppointment() {
   );
 }
 
-export default UserBookAppointment;
+export default DoctorBookAppointment;

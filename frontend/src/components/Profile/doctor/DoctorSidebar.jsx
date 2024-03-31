@@ -34,9 +34,9 @@ const DoctorSidebar = ({ profilePic, userName }) => {
             <p>{userName}</p>
         </div>
         <div className='flex flex-col items-start w-full gap-4 '>
-            <NavLink style={navLinkStyle} className={'w-full  p-2 h-[40px] '} to="/doctor-profile">Settings</NavLink>
+            {/* <NavLink style={navLinkStyle} className={'w-full  p-2 h-[40px] '} to="/doctor-profile">Settings</NavLink> */}
             <NavLink style={navLinkStyle} className={'w-full  p-2 h-[40px] '} to="/doctor-appointments">Appointments</NavLink>
-            <NavLink style={navLinkStyle}  className={'w-full p-2 h-[40px] '} to="/doctor-review">Message</NavLink>
+            <NavLink style={navLinkStyle} className={'w-full  p-2 h-[40px] '} to="/doctor-book-appointment">Book Apppointment</NavLink>
         </div>
     </div>
     <div className='w-full text-center  h-[80px] p-2'>

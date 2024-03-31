@@ -28,7 +28,7 @@ function DoctorAppointmen() {
 
   return (
     <section className="bg-slate-300 flex justify-center items-center">
-      <div className="h-[80%] w-[80%] bg-white shadow-xl p-2 flex">
+      <div className="h-full w-full bg-white shadow-xl p-2 flex">
         <DoctorSidebar userName={currentUser.name} profiePic={profiePic} />
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-start gap-5 ">
           <p className="font-semibold text-3xl">Appointments</p>
@@ -41,7 +41,7 @@ function DoctorAppointmen() {
                       #
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Patient Name
+                      Client Name
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Appointment Date

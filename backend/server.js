@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(corsMiddleware);
 
-app.use(express.static(path.join(__dirname, 'client/build'))); 
+app.use(express.static(path.join(__dirname, '../frontend/dist'))); 
 
 app.use("/auth",limiter, authController);
 app.use("/user",limiter, userController);   
@@ -32,11 +32,13 @@ app.use("/appointment",limiter, appointmentController);
 app.use("/admin",limiter, adminController);
 
 // The "catchall" handler
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html')); 
-});
 
 app.use(errorHandlerMiddleware);
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html')); 
+});
 
 (async () => {
   try {

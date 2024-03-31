@@ -12,6 +12,7 @@ import UserBookAppointment from "./components/Profile/user/UserBookAppointment";
 import UserAppointment from "./components/Profile/user/UserAppointment";
 import DoctorProfilePage from "./page/DoctorProfilePage";
 import DoctorAppointmen from "./components/Profile/doctor/DoctorAppointmen";
+import DoctorBookAppointment from "./components/Profile/doctor/DoctorBookAppointment";
 import DoctorReview from "./components/Profile/doctor/DoctorReview";
 import UserMedication from "./components/Profile/user/UserMedication";
 import NurseProfilePage from "./page/NurseProfilePage";
@@ -50,6 +51,7 @@ function App() {
              
               <Route path="/doctor-profile" element={<DoctorProfilePage />} />
               <Route path="/doctor-review" element={<DoctorReview />} />
+              <Route path="/doctor-book-appointment" element={<DoctorBookAppointment />} />
               <Route
                 path="/doctor-appointments"
                 element={<DoctorAppointmen />}

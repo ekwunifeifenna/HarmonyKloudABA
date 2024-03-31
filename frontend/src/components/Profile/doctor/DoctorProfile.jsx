@@ -78,7 +78,7 @@ function DoctorProfile() {
 
   return (
     <section className="bg-slate-300 flex justify-center items-center">
-      <div className="h-[80%] w-[80%] bg-white shadow-xl p-2 flex">
+      <div className="h-full w-full bg-white shadow-xl p-2 flex">
         <DoctorSidebar userName={userData.name} profilePic={profiePic} />
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-around ">
           <p className="font-semibold text-3xl">Account Settings</p>

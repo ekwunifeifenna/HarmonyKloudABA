@@ -52,7 +52,7 @@ function DoctorReview() {
 
       const handleAddMessage = (e) =>{
         e.preventDefault();
-        axios.post("https://hmsmern.onrender.com/doctor/add-message",{email , message ,from})
+        axios.post("/doctor/add-message",{email , message ,from})
         .then(() =>{
           Swal.fire({
             icon: "success",
@@ -74,7 +74,7 @@ function DoctorReview() {
 
   return (
     <section className='bg-slate-300 flex justify-center items-center'>
-        <div className='h-[80%] w-[80%] bg-white shadow-xl p-2 flex'>
+        <div className='h-full w-full bg-white shadow-xl p-2 flex'>
             <DoctorSidebar userName={userData.name} profiePic={profiePic} />
             <div className="overflow-auto  justify-center items-center w-[70%] ms-24 p-4 flex flex-col ">
           <form className="flex flex-col w-[60%] gap-5" action="">
